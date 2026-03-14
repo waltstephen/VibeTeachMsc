@@ -1,0 +1,13 @@
+# OS and editor noise
+.DS_Store
+Thumbs.db
+
+# Python cache (optional local preview tooling)
+__pycache__/
+*.pyc
+
+# Temporary files
+*.swp
+*.swo
+*.tmp
+

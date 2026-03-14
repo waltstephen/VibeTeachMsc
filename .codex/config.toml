@@ -1,0 +1,10 @@
+# Repository-local Codex guidance for this teaching project.
+# Keep edits small, stage-aligned, and beginner-readable.
+
+[project]
+name = "VibeTeachMsc"
+
+[workflow]
+teaching_repo = true
+prefer_incremental_changes = true
+prefer_beginner_readability = true
