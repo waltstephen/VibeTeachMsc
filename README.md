@@ -33,6 +33,16 @@ Minimal dependencies only.
 3. Fallback if no Python:
    - Open `index.html` directly in a browser.
 
+## Run on a Remote Server (with forwarding)
+If this repo is running on a remote Linux server, use SSH port forwarding.
+
+1. On the remote server, start preview:
+   - `./dev-serve.sh 8000`
+2. On your local machine, forward the port:
+   - `ssh -N -L 8000:127.0.0.1:8000 <user>@<server-host>`
+3. Open in your local browser:
+   - `http://127.0.0.1:8000`
+
 ## Codex Workflow in This Repo
 - Keep prompts narrow: one stage or one bug at a time.
 - Ask for minimal edits in existing files.
@@ -70,6 +80,7 @@ Suggested commit sequence:
 ├── .codex/
 │   └── config.toml
 ├── AGENTS.md
+├── dev-serve.sh
 ├── README.md
 ├── index.html
 ├── main.js

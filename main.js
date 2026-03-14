@@ -2,6 +2,15 @@ const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
 
 const groundY = canvas.height - 40;
+const gravity = 0.6;
+const jumpVelocity = -12;
+
+const dino = {
+  x: 80,
+  y: groundY,
+  vy: 0,
+  isJumping: false,
+};
 
 function drawGround() {
   ctx.strokeStyle = "#57666f";
@@ -35,7 +44,41 @@ function drawScene() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
   drawGround();
-  drawDino(80, groundY);
+  drawDino(dino.x, dino.y);
 }
 
-drawScene();
+function jump() {
+  if (dino.isJumping) return;
+
+  dino.vy = jumpVelocity;
+  dino.isJumping = true;
+}
+
+function updateDino() {
+  if (!dino.isJumping) return;
+
+  dino.vy += gravity;
+  dino.y += dino.vy;
+
+  if (dino.y >= groundY) {
+    dino.y = groundY;
+    dino.vy = 0;
+    dino.isJumping = false;
+  }
+}
+
+function gameLoop() {
+  updateDino();
+  drawScene();
+  requestAnimationFrame(gameLoop);
+}
+
+window.addEventListener("keydown", (event) => {
+  const isJumpKey = event.code === "Space" || event.code === "ArrowUp";
+  if (!isJumpKey) return;
+
+  event.preventDefault();
+  jump();
+});
+
+gameLoop();

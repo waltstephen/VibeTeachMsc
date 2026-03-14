@@ -13,6 +13,8 @@ Run the project locally and confirm the baseline scene appears.
 2. Preview the page:
    - Preferred: `python3 -m http.server 8000`
    - Fallback: open `index.html` directly
+   - Remote server option: `./dev-serve.sh 8000` and then use local SSH forwarding:
+     - `ssh -N -L 8000:127.0.0.1:8000 <user>@<server-host>`
 3. Verify canvas loads with ground line and placeholder dino.
 4. Initialize Git if not already initialized.
 
