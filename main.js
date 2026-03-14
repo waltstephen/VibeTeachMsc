@@ -12,6 +12,14 @@ const dino = {
   isJumping: false,
 };
 
+const obstacle = {
+  x: canvas.width + 120,
+  width: 22,
+  height: 34,
+  speed: 5,
+  resetOffset: 120,
+};
+
 function drawGround() {
   ctx.strokeStyle = "#57666f";
   ctx.lineWidth = 2;
@@ -40,11 +48,17 @@ function drawDino(x, y) {
   ctx.fillRect(x + 38, y - 50, 3, 3);
 }
 
+function drawObstacle() {
+  ctx.fillStyle = "#4d5b63";
+  ctx.fillRect(obstacle.x, groundY - obstacle.height, obstacle.width, obstacle.height);
+}
+
 function drawScene() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
   drawGround();
   drawDino(dino.x, dino.y);
+  drawObstacle();
 }
 
 function jump() {
@@ -67,8 +81,17 @@ function updateDino() {
   }
 }
 
+function updateObstacle() {
+  obstacle.x -= obstacle.speed;
+
+  if (obstacle.x + obstacle.width < 0) {
+    obstacle.x = canvas.width + obstacle.resetOffset;
+  }
+}
+
 function gameLoop() {
   updateDino();
+  updateObstacle();
   drawScene();
   requestAnimationFrame(gameLoop);
 }
