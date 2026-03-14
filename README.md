@@ -74,6 +74,28 @@ Suggested commit sequence:
 - `stage 4: add collision and score`
 - `stage 5: polish and deploy`
 
+## Stage 5 Deployment Checklist (Static Hosting)
+Keep deployment simple: this project is plain `HTML/CSS/JS`.
+
+1. Confirm latest code is committed and pushed:
+   - `git status`
+   - `git push origin main`
+2. Verify files exist at repo root:
+   - `index.html`
+   - `main.js`
+   - `style.css`
+3. Test locally before deploy:
+   - `./dev-serve.sh 8000`
+   - Open `http://127.0.0.1:8000` (or use SSH forwarding if remote)
+4. GitHub Pages option:
+   - GitHub repo -> `Settings` -> `Pages`
+   - Source: `Deploy from a branch`
+   - Branch: `main`, folder: `/ (root)`
+   - Save and wait for Pages URL to appear
+5. After publishing, test:
+   - Page loads without console errors
+   - Jump, collision, score, and restart all work
+
 ## Repository Structure
 ```text
 .
