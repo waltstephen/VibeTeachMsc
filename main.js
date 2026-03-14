@@ -20,6 +20,9 @@ const obstacle = {
   resetOffset: 120,
 };
 
+let score = 0;
+let isGameOver = false;
+
 function drawGround() {
   ctx.strokeStyle = "#57666f";
   ctx.lineWidth = 2;
@@ -53,12 +56,36 @@ function drawObstacle() {
   ctx.fillRect(obstacle.x, groundY - obstacle.height, obstacle.width, obstacle.height);
 }
 
+function drawScore() {
+  ctx.fillStyle = "#2f3a40";
+  ctx.font = '20px "Trebuchet MS", sans-serif';
+  ctx.fillText(`Score: ${Math.floor(score)}`, 16, 28);
+}
+
+function drawGameOver() {
+  ctx.fillStyle = "rgba(255, 255, 255, 0.85)";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  ctx.textAlign = "center";
+  ctx.fillStyle = "#1f2428";
+  ctx.font = 'bold 36px "Trebuchet MS", sans-serif';
+  ctx.fillText("Game Over", canvas.width / 2, canvas.height / 2 - 10);
+  ctx.font = '20px "Trebuchet MS", sans-serif';
+  ctx.fillText("Press Space or Up to restart", canvas.width / 2, canvas.height / 2 + 28);
+  ctx.textAlign = "start";
+}
+
 function drawScene() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
   drawGround();
   drawDino(dino.x, dino.y);
   drawObstacle();
+  drawScore();
+
+  if (isGameOver) {
+    drawGameOver();
+  }
 }
 
 function jump() {
@@ -89,9 +116,59 @@ function updateObstacle() {
   }
 }
 
+function getDinoHitbox() {
+  return {
+    x: dino.x + 1,
+    y: dino.y - 53,
+    width: 44,
+    height: 53,
+  };
+}
+
+function getObstacleHitbox() {
+  return {
+    x: obstacle.x + 1,
+    y: groundY - obstacle.height + 1,
+    width: obstacle.width - 2,
+    height: obstacle.height - 2,
+  };
+}
+
+function isColliding(a, b) {
+  return (
+    a.x < b.x + b.width &&
+    a.x + a.width > b.x &&
+    a.y < b.y + b.height &&
+    a.y + a.height > b.y
+  );
+}
+
+function hasCollision() {
+  const dinoBox = getDinoHitbox();
+  const obstacleBox = getObstacleHitbox();
+  return isColliding(dinoBox, obstacleBox);
+}
+
+function resetGame() {
+  dino.y = groundY;
+  dino.vy = 0;
+  dino.isJumping = false;
+  obstacle.x = canvas.width + obstacle.resetOffset;
+  score = 0;
+  isGameOver = false;
+}
+
 function gameLoop() {
-  updateDino();
-  updateObstacle();
+  if (!isGameOver) {
+    updateDino();
+    updateObstacle();
+    score += 0.1;
+
+    if (hasCollision()) {
+      isGameOver = true;
+    }
+  }
+
   drawScene();
   requestAnimationFrame(gameLoop);
 }
@@ -101,6 +178,12 @@ window.addEventListener("keydown", (event) => {
   if (!isJumpKey) return;
 
   event.preventDefault();
+
+  if (isGameOver) {
+    resetGame();
+    return;
+  }
+
   jump();
 });
 
