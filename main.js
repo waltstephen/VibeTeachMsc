@@ -178,6 +178,7 @@ window.addEventListener("keydown", (event) => {
   if (!isJumpKey) return;
 
   event.preventDefault();
+  if (event.repeat) return;
 
   if (isGameOver) {
     resetGame();
