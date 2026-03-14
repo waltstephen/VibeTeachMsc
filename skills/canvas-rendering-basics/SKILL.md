@@ -1,3 +1,8 @@
+---
+name: canvas-rendering-basics
+description: Draw the early-stage Dino scene with Canvas API using simple primitives. Use when students are at render-focused stages and need help with canvas setup, coordinate placement, draw order, and minimal readable edits in main.js.
+---
+
 # Skill: canvas-rendering-basics
 
 ## What This Skill Is

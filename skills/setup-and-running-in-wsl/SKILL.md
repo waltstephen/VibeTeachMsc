@@ -1,3 +1,8 @@
+---
+name: setup-and-running-in-wsl
+description: Run and verify this static HTML/CSS/JS teaching repo in WSL with minimal setup. Use when students need to confirm environment basics (git/python3/shell), launch local preview, fix path or static-serving issues, and keep stage-0 changes minimal.
+---
+
 # Skill: setup-and-running-in-wsl
 
 ## What This Skill Is

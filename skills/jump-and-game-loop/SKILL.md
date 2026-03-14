@@ -1,3 +1,8 @@
+---
+name: jump-and-game-loop
+description: Add beginner-friendly jump physics and a minimal frame loop to the Dino teaching project. Use when students need stage-2 style help for input handling, gravity, landing clamps, and requestAnimationFrame without overengineering.
+---
+
 # Skill: jump-and-game-loop
 
 ## What This Skill Is

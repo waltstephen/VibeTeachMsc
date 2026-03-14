@@ -1,3 +1,8 @@
+---
+name: collision-and-state
+description: Implement compact collision detection, score updates, and game-state transitions for the Dino teaching repo. Use when students are adding obstacles/game-over behavior and need minimal, stage-aligned logic in main.js.
+---
+
 # Skill: collision-and-state
 
 ## What This Skill Is

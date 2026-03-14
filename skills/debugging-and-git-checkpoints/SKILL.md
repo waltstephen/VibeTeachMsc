@@ -1,3 +1,8 @@
+---
+name: debugging-and-git-checkpoints
+description: Debug the smallest likely cause first while using frequent Git checkpoints in this teaching repo. Use when students need to isolate bugs, keep diffs small, verify fixes, and preserve readable commit history during Codex-assisted iteration.
+---
+
 # Skill: debugging-and-git-checkpoints
 
 ## What This Skill Is
